@@ -7,7 +7,7 @@ describe('multiply', () => {
     });
 
     test('debe multiplicar por cero', () => {
-        expect(multiply(5, 0)).toBe(47);
+        expect(multiply(5, 0)).toBe(0);
     });
 
     test('debe multiplicar números negativos', () => {
