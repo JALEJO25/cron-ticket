@@ -51,6 +51,13 @@ jobs:
         run: |
           echo "App: ${{ env.APP_NAME }}, Node: ${{ env.NODE_VERSION }}"
 
+      - name: Deploye api
+        run: |
+          echo "Dploying with key ${{ secrets.APP_KEY }}"
+
+
+
+# variables del step
       - name: Build
         run: |
           echo "Ejecutando build simulado en la carpeta ${{ env.BUILD_DIR }} con version ${{ env.APP_VERSION }}"
