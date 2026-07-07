@@ -1,4 +1,4 @@
-name: CI PipeLine
+name: CI PipeLine & Env Variables
 
 on:
   push:
@@ -7,7 +7,15 @@ on:
     branches: [main]
   workflow_dispatch:
 
+# 1. Variables globales (al principio del archivo)
+env:
+  NODE_VERSION: "20"
+  APP_NAME: cron-ticker
+
+# 2. Un único bloque de JOBS para todo el archivo
 jobs:
+
+  # Primer Job: Ejecuta tus pruebas unitarias
   run-test:
     name: Run Tests
     runs-on: ubuntu-latest
@@ -19,7 +27,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: ${{ env.NODE_VERSION }}
       
       - name: Install Dependencies
         run: npm install
@@ -27,26 +35,24 @@ jobs:
       - name: Run Tests
         run: npm test
 
-env:
-  NODE_VERSION: "20"
-  APP_NAME: cron-ticker
-
-jobs:
-
+  # Segundo Job: El ejercicio de variables del docente
   build:
+    name: Build Project
     runs-on: ubuntu-latest
 
     env:
       BUILD_DIR: dist
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
       - name: Show Variables
-        run:  |  
+        run: |
           echo "App: ${{ env.APP_NAME }}, Node: ${{ env.NODE_VERSION }}"
 
       - name: Build
-        run: npm run build
+        run: |
+          echo "Ejecutando build simulado en la carpeta ${{ env.BUILD_DIR }} con version ${{ env.APP_VERSION }}"
         env:
           APP_VERSION: '2.0.0'
