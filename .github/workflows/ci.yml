@@ -44,7 +44,7 @@ jobs:
 
       - name: Show Variables
         run:  |  
-          echo "App: ${{ env.APP_NAME }}, Node: {{ env.NODE_VERSION }}"
+          echo "App: ${{ env.APP_NAME }}, Node: ${{ env.NODE_VERSION }}"
 
       - name: Build
         run: npm run build
