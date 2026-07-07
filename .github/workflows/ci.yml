@@ -53,7 +53,7 @@ jobs:
 
       - name: Deploye api
         run: |
-          echo "Dploying with key ${{ secrets.APP_KEY }}"
+          echo "Dploying with key ${{ secrets.API_KEY }}"
 
 
 
